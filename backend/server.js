@@ -12,6 +12,11 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
+//Body Parser midddleware (Here this line of code is used for getting data for authUser)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 app.get('/',(req,res)=>{
     res.send('Api is running...')
 });
