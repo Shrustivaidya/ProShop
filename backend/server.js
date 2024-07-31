@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import connectDB from './config/db.js';
@@ -15,6 +16,9 @@ const app = express();
 //Body Parser midddleware (Here this line of code is used for getting data for authUser)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Cookie parser middleware
+app.use(cookieParser());
 
 
 app.get('/',(req,res)=>{
