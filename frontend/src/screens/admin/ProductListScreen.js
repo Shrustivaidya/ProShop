@@ -4,11 +4,15 @@ import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import {toast} from 'react-toastify';
+import { useParams } from 'react-router-dom';
+import Paginate from '../../components/Paginate';
 import { useGetProductsQuery,useCreateProductMutation,useDeleteProductMutation } from '../../slices/productsApiSlices';
 
 const ProductListScreen = () => {
+
+  const {pageNumber} = useParams();
  
-    const { data:products, isLoading, error, refetch} = useGetProductsQuery();
+    const { data, isLoading, error, refetch} = useGetProductsQuery({pageNumber});
 
 
     const [createProduct, { isLoading: loadingCreate }] =
@@ -70,7 +74,7 @@ const ProductListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -98,6 +102,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
+          <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
     </>
