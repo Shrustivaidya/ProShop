@@ -9,6 +9,7 @@ import { addToCart } from "../slices/cartSlice";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import {toast} from "react-toastify";
+import Meta from "../components/Meta";
 
 
 
@@ -62,6 +63,7 @@ const submitHandler = async (e) => {
         <Message variant ='danger'>{error?.data?.message || error.error}</Message>
       ) : (
       <>
+      <Meta title={product.name}/>
         <Row>
         <Col md ={5}>
           <Image src={product.image} alt={product.name} fluid/>
