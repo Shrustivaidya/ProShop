@@ -181,13 +181,16 @@ const submitHandler = async (e) => {
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
+                      <Form.Group className='my-2' controlId='submit'>
                       <Button
                         disabled={loadingProductReview}
                         type='submit'
                         variant='primary'
+                        className='w-100'
                       >
                         Submit
                       </Button>
+                      </Form.Group>
                     </Form>
                   ) : (
                     <Message>
